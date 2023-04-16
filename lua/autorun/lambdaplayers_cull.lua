@@ -74,7 +74,7 @@ if CLIENT then
             end
 
             Panel:AddControl( "Header", {Description = "Culling will remove any LambdaPlayer that is far from any player. This will save on performance." } )
-            Panel:AddControl( "Button", { Label = "Reset to Defaults", Command = "lambdaplayers_cull_reset_defaults", Description = "Reset the culling distance to the default (recommended) values.", Text = "Reset to Defaults", Function = function() RunConsoleCommand("lambdaplayers_cull_distance", "3000") RunConsoleCommand("lambdaplayers_cull_interval", "5") end } )
+            Panel:AddControl( "Button", { Label = "Reset to Defaults", Command = "lambdaplayers_cull_reset_defaults", Description = "Reset the culling distance to the default (recommended) values.", Text = "Reset to Defaults", Function = function() RunConsoleCommand("lambdaplayers_cull_distance", "3000") end } )
 
             Panel:CheckBox( "Enable Culling?","lambdaplayers_cull_enable" )
             Panel:AddControl( "Slider", { Label = "Culling Distance", Command = "lambdaplayers_cull_distance", Min = "1000", Max = "10000" } )
