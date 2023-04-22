@@ -40,7 +40,7 @@ end
 -- Uh, if there's another way, instead of using a think hook,
 -- I'm open to better ideas
 hook.Add("Think", "RemoveFarLambda", function()
-    if not isCullingEnabled then return end
+    if !isCullingEnabled:GetBool() then return end
 
     local lambdaPlayers = {}
     local cullDistance = GetConVar( "lambdaplayers_cull_distance" ):GetInt()
@@ -51,14 +51,15 @@ hook.Add("Think", "RemoveFarLambda", function()
         end
     end
 
-	if SERVER then -- Call this on ServerSide
-		for _, lambda in pairs( lambdaPlayers ) do -- Search for all Lambda Players.
-			if IsValid( lambda ) and isFarFromPlayer( lambda, cullDistance ) then
-				lambda:Remove() -- Remove them
-			end
-		end
-	end
+    if SERVER then -- Call this on ServerSide
+        for _, lambda in pairs( lambdaPlayers ) do -- Search for all Lambda Players.
+            if IsValid( lambda ) and isFarFromPlayer( lambda, cullDistance ) then
+                lambda:Remove() -- Remove them
+            end
+        end
+    end
 end)
+	
 
 CreateConVar("lambdaplayers_cull_distance", "3000", FCVAR_ARCHIVE, "If the LambdaPlayer's distance is far away from any player with the value set, the lambdaplayer will be culled.", 400, 10000)
 CreateConVar("lambdaplayers_cull_enable", "1", FCVAR_ARCHIVE, "If LambdaPlayers should be culled.")
